@@ -3,6 +3,7 @@ package cart.hat.demo;
 import java.io.IOException;
 import java.util.List;
 import java.util.Locale;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -13,13 +14,15 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 import cart.hat.demo.bean.Product;
 import cart.hat.demo.dao.ProductDao;
+import cart.hat.demo.service.ProductService;
 
 /**
  * Handles requests for the application home page.
  */
 @Controller
-public class HomeController {	
-	private ProductDao productDao = new ProductDao();	
+public class HomeController {
+	@Autowired
+	ProductService productService;	
 	
 	/**
 	 * Simply selects the home view to render by returning its name.
@@ -30,23 +33,23 @@ public class HomeController {
 	}
 	
 	 @RequestMapping({"/productList"})
-	  public ModelAndView getProductList(@ModelAttribute Product fund)
+	  public ModelAndView getProductList(@ModelAttribute Product product)
 	  {
-	    List<Product> productList = productDao.getProductList();
+	    List<Product> productList = productService.getProductList();
 	    ModelAndView model = new ModelAndView("productList");
 	    model.addObject("productList", productList);
 	    return model;
-	  } 	
+	  } 	 
 	 
-	 @RequestMapping({"/viewProduct"})
-	  public ModelAndView viewProduct(@RequestParam("producId") String productId) throws IOException 
-	  
-	  {			
-			Product product= productDao.getProductById(productId);
-			ModelAndView model = new ModelAndView("viewProduct");
-		    model.addObject("product", product);
-		    return model;	
-	    
-	  } 	
+	 @RequestMapping({"/insert"})
+	  public ModelAndView addProduct(@ModelAttribute Product product)
+	  {
+	    if (product.getProductName() != null)
+	    {
+	      productService.insertProduct(product);
+	    }
+	    ModelAndView model = new ModelAndView("insertFund");
+	    return model;
+	  }
 }	
 

@@ -21,6 +21,17 @@
 		<beans:property name="suffix" value=".jsp" />
 	</beans:bean>
 	
+	 <beans:bean id="dataSource"
+		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+		<beans:property name="driverClassName" value="com.mysql.jdbc.Driver" />
+		<beans:property name="url" value="jdbc:mysql://localhost:3306/donoradvised" />
+		<beans:property name="username" value="root" />
+		<beans:property name="password" value="pixie1" />
+	</beans:bean>
+	
+	<beans:bean id="productDao" class="cart.hat.demo.dao.ProductDaoImpl" />
+    <beans:bean id="productService" class="cart.hat.demo.service.ProductServiceImpl" />		
+	
 	<context:component-scan base-package="cart.hat.demo" />
 	
 	
