@@ -63,6 +63,7 @@
                 </select>
             </div>
         </div>
+        <input type="submit" value="Add DAF Fund">  
     </form>
 </div>
 </body>
