@@ -51,5 +51,13 @@ public class HomeController {
 	    ModelAndView model = new ModelAndView("insertFund");
 	    return model;
 	  }
+	 
+	 @RequestMapping({"/productForm"})
+	  public ModelAndView getProductForm(@ModelAttribute Product product)
+	  {
+		 ModelAndView model = new ModelAndView("productForm");
+		    return model;
+	   
+	  } 	 
 }	
 
