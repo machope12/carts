@@ -19,52 +19,18 @@
 </head>
 <body>
 <div class="bs-example">
-    <form action="<%=request.getContextPath() %>/insert" method= POST >  
-        <div class="form-group row">
-            <label class="col-sm-2 col-form-label col-form-label-lg">Email</label>
-            <div class="col-sm-10">
-                <input type="email" class="form-control form-control-lg" placeholder="Large input">
-            </div>
-        </div>
-        <div class="form-group row">
-            <label class="col-sm-2 col-form-label">Email</label>
-            <div class="col-sm-10">
-                <input type="email" class="form-control" placeholder="Default input">
-            </div>
-        </div>
-        <div class="form-group row">
-            <label class="col-sm-2 col-form-label">Email</label>
-            <div class="col-sm-10">
-                <input type="email" class="form-control form-control-sm" placeholder="Small input">
-            </div>
-        </div>
-        <hr>
-        <div class="form-group row">
-            <label class="col-sm-2 col-form-label col-form-label-lg">State</label>
-            <div class="col-sm-10">
-                <select class="form-control form-control-lg">
-                    <option>Large select</option>
-                </select>
-            </div>
-        </div>    
-        <div class="form-group row">
-            <label class="col-sm-2 col-form-label">State</label>
-            <div class="col-sm-10">
-                <select class="form-control">
-                    <option>Default select</option>
-                </select>
-            </div>
-        </div>    
-        <div class="form-group row">
-            <label class="col-sm-2 col-form-label col-form-label-sm">State</label>
-            <div class="col-sm-10">
-                <select class="form-control form-control-sm">
-                    <option>Small select</option>
-                </select>
-            </div>
-        </div>
-        <input type="submit" value="Add DAF Fund">  
-    </form>
+    <form class="form-inline" action="/action_page.php">
+  <label for="email">Email address:</label>
+  <input type="email" class="form-control" placeholder="Enter email" id="email">
+  <label for="pwd">Password:</label>
+  <input type="password" class="form-control" placeholder="Enter password" id="pwd">
+  <div class="form-check">
+    <label class="form-check-label">
+      <input class="form-check-input" type="checkbox"> Remember me
+    </label>
+  </div>
+  <button type="submit" class="btn btn-primary">Submit</button>
+</form> 
 </div>
 </body>
 </html>                            
