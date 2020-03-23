@@ -12,6 +12,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
+
+import com.fund.mvc.bean.FundBean;
+
 import cart.hat.demo.bean.Product;
 import cart.hat.demo.dao.ProductDao;
 import cart.hat.demo.service.ProductService;
@@ -46,6 +49,7 @@ public class HomeController {
 	  {
 	    if (product.getProductName() != null)
 	    {
+	      System.out.println(product.getProductName());
 	      productService.insertProduct(product);
 	    }
 	    ModelAndView model = new ModelAndView("insertFund");
@@ -58,6 +62,7 @@ public class HomeController {
 		 ModelAndView model = new ModelAndView("productForm");
 		    return model;
 	   
-	  } 	 
+	  }
+	 
 }	
 

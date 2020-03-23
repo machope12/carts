@@ -2,36 +2,31 @@ package cart.hat.demo.dao;
 
 import java.util.ArrayList;
 import java.util.List;
-
 import javax.sql.DataSource;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
-
-
-
 import cart.hat.demo.bean.Product;
 import cart.hat.demo.dao.ProductDao;
+import cart.hat.demo.jdbc.ProductMapper;
 
 public class ProductDaoImpl implements ProductDao{
 	
 	@Autowired
 	  DataSource dataSource;
 	
-		public List<Product> getProductList() {
-		List<Product> fundList = new ArrayList();
+	public List<Product> getProductList() {
+		List<Product> productList = new ArrayList();
 	    String sql = "select * from daf_main order by name_Of_Fund";
 	    JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
-	    fundList = jdbcTemplate.query(sql, new FundRowMapper());
-	    return fundList;
+	    productList = jdbcTemplate.query(sql, new ProductMapper());
+	    return productList;
 	}
-
 	
 	public void insertProduct(Product product) {
-		 String sql = "insert into daf_main (contact,name_of_fund,Description,notes,Active) values(?,?,?,?,?)";
+		 String sql = "insert into Product (productName,productCategory) values(?,?)";
 		    JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
 		    jdbcTemplate.update(sql, 
-		      new Object[] { Integer.valueOf(fund.getContact()), fund.getNameOfFund(), fund.getDescription(), fund.getNotes(), Integer.valueOf(fund.getActive()) });
+		      new Object[] {product.getProductName(), product.getProductCategory()});
 		  }
 		
 	}

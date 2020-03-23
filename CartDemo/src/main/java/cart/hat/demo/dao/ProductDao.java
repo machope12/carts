@@ -6,8 +6,7 @@ import java.util.List;
 import cart.hat.demo.bean.Product;
 
 
-public abstract interface ProductDao {
-	
+public abstract interface ProductDao {	
 	public abstract List<Product> getProductList();
 	public abstract void insertProduct(Product product);
 	
