@@ -9,17 +9,34 @@ import cart.hat.demo.service.ProductService;
 
 public class ProductServiceImpl implements ProductService {
 	@Autowired
-	  ProductDao productDao;
-	
-	public List<Product> getProductList() {
-				return productDao.getProductList();
-		
-	}
+	ProductDao productDao;
+
 	
 	public void insertProduct(Product product) {
-		
-		    productDao.insertProduct(product);
-		  }
-		
-	}	
+		productDao.insertProduct(product);
+	}
+	
+	public List<Product> getProductList(Product product) {
+		// TODO Auto-generated method stub
+		return productDao.getProductList(product);
+	}
+
+	
+	public List<Product> getProduct(Product product) {
+		// TODO Auto-generated method stub
+		return productDao.getProduct(product);
+	}
+
+	
+	
+
+	
+	
+	
+	
+	
+	
+	
+}	
+	
 

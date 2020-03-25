@@ -10,13 +10,13 @@ public class Product {
 	private String productStatus;
 	private int unitsInStock;
 	private String productManufactor;
-	private String productId;
+	private int productId;
 	
-	public String getProductId() {
+	public int getProductId() {
 		return productId;
 	}
-	public void setProductId(String productId) {
-		this.productId = productId;
+	public void setProductId(int i) {
+		this.productId = i;
 	}
 	public String getProductName() {
 		return productName;

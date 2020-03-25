@@ -9,26 +9,36 @@ import cart.hat.demo.bean.Product;
 import cart.hat.demo.dao.ProductDao;
 import cart.hat.demo.jdbc.ProductMapper;
 
-public class ProductDaoImpl implements ProductDao{
-	
+public class ProductDaoImpl implements ProductDao {
+
 	@Autowired
-	  DataSource dataSource;
-	
-	public List<Product> getProductList() {
+	DataSource dataSource;
+
+	public List<Product> getProductList(Product product) {
 		List<Product> productList = new ArrayList();
-	    String sql = "select * from daf_main order by name_Of_Fund";
-	    JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
-	    productList = jdbcTemplate.query(sql, new ProductMapper());
-	    return productList;
-	}
-	
-	public void insertProduct(Product product) {
-		 String sql = "insert into Product (productName,productCategory) values(?,?)";
-		    JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
-		    jdbcTemplate.update(sql, 
-		      new Object[] {product.getProductName(), product.getProductCategory()});
-		  }
-		
+		String sql = "select * from product";
+		JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
+		productList = jdbcTemplate.query(sql, new ProductMapper());
+		return productList;
 	}
 
+	public void insertProduct(Product product) {
+		String sql = "insert into product (productName,productCategory) values(?,?)";
+		JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
+		jdbcTemplate.update(sql, new Object[] { product.getProductName(), product.getProductCategory() });
+	}
+
+	
+	public List<Product> getProduct(Product product) {
+		// TODO Auto-generated method stu
+		List<Product> products = new ArrayList();
+		String sql = "select * from product where productId =" + product.getProductId();
+		JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
+		products = jdbcTemplate.query(sql, new ProductMapper());
+		return products;
+	}
+
+	
+	
+	}			
 

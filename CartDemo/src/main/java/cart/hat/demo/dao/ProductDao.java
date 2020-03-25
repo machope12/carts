@@ -7,7 +7,8 @@ import cart.hat.demo.bean.Product;
 
 
 public abstract interface ProductDao {	
-	public abstract List<Product> getProductList();
-	public abstract void insertProduct(Product product);
 	
+	public abstract void insertProduct(Product product);
+	public abstract List<Product> getProductList(Product product);	
+	public abstract List<Product> getProduct(Product product);	
 }
