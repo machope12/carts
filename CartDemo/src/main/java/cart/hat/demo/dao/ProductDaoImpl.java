@@ -14,7 +14,7 @@ public class ProductDaoImpl implements ProductDao {
 	@Autowired
 	DataSource dataSource;
 
-	public List<Product> getProductList(Product product) {
+	public List<Product> getProductList() {
 		List<Product> productList = new ArrayList();
 		String sql = "select * from product";
 		JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
@@ -28,17 +28,13 @@ public class ProductDaoImpl implements ProductDao {
 		jdbcTemplate.update(sql, new Object[] { product.getProductName(), product.getProductCategory() });
 	}
 
-	
-	public List<Product> getProduct(Product product) {
+	public List<Product> getProduct(int i) {
 		// TODO Auto-generated method stu
-		List<Product> products = new ArrayList();
-		String sql = "select * from product where productId =" + product.getProductId();
+		List<Product> productList = new ArrayList();
+		String sql = "select * from product where productId =" + i;
 		JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
-		products = jdbcTemplate.query(sql, new ProductMapper());
-		return products;
+		productList = jdbcTemplate.query(sql, new ProductMapper());
+		return productList;
 	}
 
-	
-	
-	}			
-
+}

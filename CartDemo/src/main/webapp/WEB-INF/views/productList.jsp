@@ -21,12 +21,12 @@
 				<c:forEach var="product" items="${productList}">
 				    ${product.productId}  ${product.productName} ${product.productCategory}
 					<c:url value="/viewProduct" var="myURL">
-						<c:param name="producId" value="${product.productId}" />
-					</c:url>
+						<c:param name="productId" value="${product.productId}" />
+					</c:url>					
 					<td><img src="#" alt="image"></td>
 					<td>${product.productName}</td>
 					<td>${product.productCategory}</td>
-					<td><a href="${myURL}"><i class="fa fa-car"></i></a></td>
+					<td><a href="${myURL}"><i class="fa fa-car"></i></a></td>					
 				</c:forEach>
 			</tr>
 		</table>

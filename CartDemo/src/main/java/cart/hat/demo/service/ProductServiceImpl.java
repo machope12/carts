@@ -16,16 +16,19 @@ public class ProductServiceImpl implements ProductService {
 		productDao.insertProduct(product);
 	}
 	
-	public List<Product> getProductList(Product product) {
+	public List<Product> getProductList() {
 		// TODO Auto-generated method stub
-		return productDao.getProductList(product);
+		return productDao.getProductList();
+	}	
+
+	
+	public List<Product> getProduct(int i) {
+		// TODO Auto-generated method stub
+		return productDao.getProduct(i);
 	}
 
 	
-	public List<Product> getProduct(Product product) {
-		// TODO Auto-generated method stub
-		return productDao.getProduct(product);
-	}
+	
 
 	
 	

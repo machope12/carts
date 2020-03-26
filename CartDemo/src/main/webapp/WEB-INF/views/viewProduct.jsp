@@ -9,15 +9,13 @@
 		</div>
 		<div class= "container">
 			<div class= "row">
-				<div class= "col-md-5">
-					<img src="#" alt="image" style="width:100% height:300px"/>				
-				</div>
-				<div class= "col-md-5" style = "font-size:15px">
-					<h5>${product.productName}</h5>
-					
-					<p>Category
-					<strong> ${product.productCategory}</strong>						
-					</p>
+				<c:forEach var="product" items="${productList}"> 
+										
+					<td><img src="#" alt="image"></td>
+					<td>${product.productName}</td>
+					<td>${product.productCategory}</td>
+										
+				</c:forEach>
 							
 				</div>
 			</div>		

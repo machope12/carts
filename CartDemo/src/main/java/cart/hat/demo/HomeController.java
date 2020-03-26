@@ -33,7 +33,7 @@ public class HomeController {
 
 	@RequestMapping({ "/productList" })
 	public ModelAndView getProductList(Product product) {
-		List<Product> productList = productService.getProductList(product);
+		List<Product> productList = productService.getProductList();
 		ModelAndView model = new ModelAndView("productList");
 		model.addObject("productList", productList);
 		return model;
@@ -41,7 +41,7 @@ public class HomeController {
 
 	@RequestMapping({ "/insert" })
 	public ModelAndView addProduct(@ModelAttribute Product product) {
-		if (product.getProductName() != null) {			
+		if (product.getProductName() != null) {
 			productService.insertProduct(product);
 		}
 		ModelAndView model = new ModelAndView("home");
@@ -53,17 +53,14 @@ public class HomeController {
 		ModelAndView model = new ModelAndView("productForm");
 		return model;
 	}
-	
+
 	@RequestMapping({ "/viewProduct" })
-	public ModelAndView getProduct(Product product) {
-		List<Product> productList = productService.getProductList(product);
+	public ModelAndView listNotes(@RequestParam("productId") int productId) {
+		System.out.println(productId);			
+		List<Product> productList = productService.getProduct(productId);		
 		ModelAndView model = new ModelAndView("viewProduct");
 		model.addObject("productList", productList);
 		return model;
 	}
-	
-	
-		
+
 }
-
-
