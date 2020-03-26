@@ -27,5 +27,7 @@
 	</classpathentry>
 	<classpathentry kind="lib" path="C:/Users/Mac Hollinger/Downloads/spring-jdbc-3.1.1.RELEASE(2).jar"/>
 	<classpathentry kind="lib" path="C:/Users/Mac Hollinger/Downloads/mysql-connector-java-8.0.16.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Mac Hollinger/Downloads/commons-fileupload-1.2.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Mac Hollinger/Downloads/commons-io-1.3.2.jar"/>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>
