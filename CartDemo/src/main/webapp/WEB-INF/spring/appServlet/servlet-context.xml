@@ -31,15 +31,13 @@
 		<beans:property name="driverClassName"
 			value="com.mysql.jdbc.Driver" />
 		<beans:property name="url"
-			value="jdbc:mysql://localhost:3306/shopcart" />
+			value="jdbc:mysql://localhost:3306/student" />
 		<beans:property name="username" value="root" />
 		<beans:property name="password" value="pixie1" />
 	</beans:bean>
 
 	<beans:bean id="productDao"
-		class="cart.hat.demo.dao.ProductDaoImpl" />
-	<beans:bean id="productService"
-		class="cart.hat.demo.service.ProductServiceImpl" />
+		class="cart.hat.demo.dao.ProductDaoImpl" />	
 	<beans:bean id="multipartResolver"
 		class="org.springframework.web.multipart.commons.CommonsMultipartResolver" />
 

@@ -13,11 +13,15 @@ public class ProductExtractor implements ResultSetExtractor<Product>
   public Product extractData(ResultSet resultSet) throws SQLException, DataAccessException
   {
     Product product = new Product();
-    product.setProductId(resultSet.getInt(1));
-    product.setProductName(resultSet.getString(2));
-    product.setProductCategory(resultSet.getString(3));
+    product.setName(resultSet.getString(1));
+    product.setAge(resultSet.getInt(2));
+    product.
     return product;
-  }  
+  } 
+  
+  
 }
+
+
   
  

@@ -18,14 +18,13 @@
 				</tr>
 			</thead>
 			<tr>
-				<c:forEach var="product" items="${productList}">
-				    ${product.productId}  ${product.productName} ${product.productCategory}
+				<c:forEach var="product" items="${productList}">				    
 					<c:url value="/viewProduct" var="myURL">
 						<c:param name="productId" value="${product.productId}" />
 					</c:url>					
 					<td><img src="#" alt="image"></td>
-					<td>${product.productName}</td>
-					<td>${product.productCategory}</td>
+					<td>${product.Name}</td>
+					<td>${product.productAge}</td>
 					<td><a href="${myURL}"><i class="fa fa-car"></i></a></td>					
 				</c:forEach>
 			</tr>

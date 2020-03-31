@@ -3,12 +3,18 @@ package cart.hat.demo.dao;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+
+import org.springframework.web.multipart.MultipartFile;
+
+import com.mysql.cj.jdbc.Blob;
+
 import cart.hat.demo.bean.Product;
 
 
-public abstract interface ProductDao {	
-	
-	public abstract void insertProduct(Product product);
+public abstract interface ProductDao {		
 	public abstract List<Product> getProductList();	
-	public abstract List<Product> getProduct(int i);	
+	public abstract List<Product> getProduct(int i);
+	public abstract int insertRecords(String name, Integer age, MultipartFile photo) throws IOException;
+	public abstract Blob getPhotoById(int id);	
+	
 }
