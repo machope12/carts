@@ -11,9 +11,9 @@
 			<div class= "row">
 				<c:forEach var="product" items="${productList}"> 
 										
-					<td><img src="#" alt="image"></td>
+					<td><img src="${product.productPicture}" alt="image"></td>
 					<td>${product.productName}</td>
-					<td>${product.productCategory}</td>
+					<td>${product.productAge}</td>
 										
 				</c:forEach>
 							

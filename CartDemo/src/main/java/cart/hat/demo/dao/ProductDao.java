@@ -1,12 +1,12 @@
 package cart.hat.demo.dao;
 
 import java.io.IOException;
+import java.sql.Blob;
 import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.web.multipart.MultipartFile;
 
-import com.mysql.cj.jdbc.Blob;
 
 import cart.hat.demo.bean.Product;
 

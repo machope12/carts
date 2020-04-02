@@ -41,16 +41,14 @@ public class ProductDaoImpl implements ProductDao {
 	public List<Product> getProduct(int i) {
 		// TODO Auto-generated method stu
 		List<Product> productList = new ArrayList();
-		String sql = "select * from student where productId =" + i;
+		String sql = "select * from student where Id =" + i;
 		JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
 		productList = jdbcTemplate.query(sql, new ProductMapper());
 		return productList;
 	}
 
 	public int insertRecords(String name, Integer age, MultipartFile photo) throws IOException {
-		// TODO Auto-generated method stub
-		System.out.println(photo.getSize());
-
+		// TODO Auto-generated method stub		
 		JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
 		byte[] photoBytes = photo.getBytes();
 		String sql = "INSERT INTO STUDENT(NAME,AGE,PHOTO) VALUES (?,?,?)";
@@ -61,9 +59,7 @@ public class ProductDaoImpl implements ProductDao {
 	public Blob getPhotoById(int id) {
 		JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
 		String query = "select photo from student where id=?";
-
 		Blob photo = jdbcTemplate.queryForObject(query, new Object[] { id }, Blob.class);
-
 		return photo;
 	}
 

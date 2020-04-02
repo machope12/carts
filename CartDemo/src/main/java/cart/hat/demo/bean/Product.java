@@ -1,8 +1,8 @@
 package cart.hat.demo.bean;
 
+import java.awt.Image;
+import java.sql.Blob;
 import org.springframework.web.multipart.MultipartFile;
-
-import com.mysql.cj.jdbc.Blob;
 
 public class Product {
 
@@ -15,46 +15,13 @@ public class Product {
 	private int unitsInStock;
 	private String productManufactor;
 	private int productId;
-	private MultipartFile photo;
-	private String name;
-	private Integer age;
-	private Blob picture;
-
-	public Blob getPicture() {
-		return picture;
-	}
-
-	public void setPicture(Blob picture) {
-		this.picture = picture;
-	}
-
-	public void setPhoto(MultipartFile photo) {
-		this.photo = photo;
-	}
-
-	public String getName() {
-		return name;
-	}
-
-	public void setName(String name) {
-		this.name = name;
-	}
-
-	public Integer getAge() {
-		return age;
-	}
-
-	public void setAge(Integer age) {
-		this.age = age;
-	}
-
-	public MultipartFile getPhoto() {
-		return photo;
-	}
-
-	public void setFile(MultipartFile photo) {
-		this.photo = photo;
-	}
+	private MultipartFile productPhoto;
+	private Integer productAge;
+	private Blob productPicture;
+	private Image productImage;
+	
+	
+	
 
 	public int getProductId() {
 		return productId;
@@ -128,4 +95,35 @@ public class Product {
 		this.productManufactor = productManufactor;
 	}
 
+	public MultipartFile getProductPhoto() {
+		return productPhoto;
+	}
+
+	public void setProductPhoto(MultipartFile productPhoto) {
+		this.productPhoto = productPhoto;
+	}
+
+	public Integer getProductAge() {
+		return productAge;
+	}
+
+	public void setProductAge(Integer productAge) {
+		this.productAge = productAge;
+	}
+
+	public Blob getProductPicture() {
+		return productPicture;
+	}
+
+	public void setProductPicture(Blob productPicture) {
+		this.productPicture = productPicture;
+	}
+
+	public Image getProductImage() {
+		return productImage;
+	}
+
+	public void setProductImage(Image productImage) {
+		this.productImage = productImage;
+	}
 }
