@@ -19,9 +19,7 @@ public class Product {
 	private Integer productAge;
 	private Blob productPicture;
 	private Image productImage;
-	
-	
-	
+	private String productBase64Image;
 
 	public int getProductId() {
 		return productId;
@@ -126,4 +124,18 @@ public class Product {
 	public void setProductImage(Image productImage) {
 		this.productImage = productImage;
 	}
+
+	public String getProductBase64Image() {
+		return productBase64Image;
+	}
+
+	public void setProductBase64Image(String productBase64Image) {
+		this.productBase64Image = productBase64Image;
+	}
+
+	public void setproductBase64ImageString(String base64Image) {
+		// TODO Auto-generated method stub
+		
+	}
+
 }

@@ -13,23 +13,26 @@
 			<thead>
 				<tr class="bg-success">
 					<td>Product Image</td>
-					<td>Prodict Id</td>
+					<td>Product Id</td>
 					<td>Product Name</td>
 					<td>Product Category</td>
 				</tr>
 			</thead>
-			<tr>
-				<c:forEach var="product" items="${productList}">				    
+			<c:forEach var="product" items="${productList}">
+				<tr>
+
 					<c:url value="/viewProduct" var="myURL">
 						<c:param name="productId" value="${product.productId}" />
-					</c:url>					
-					<td><img src="${product.productImage}" alt="image"></td>
+					</c:url>
+					<td><img
+						src="data:image/jpg;base64,${product.productBase64Image}"
+						width="150" height="150" /></td>
 					<td>${product.productId}</td>
 					<td>${product.productName}</td>
-					<td>${product.productAge}</td>					
-					<td><a href="${myURL}"><i class="fa fa-car"></i></a></td>					
-				</c:forEach>
+					<td>${product.productAge}</td>
+					<td><a href="${myURL}"><i class="fa fa-car"></i></a></td>			
 			</tr>
+			</c:forEach>
 		</table>
 
 	</div>

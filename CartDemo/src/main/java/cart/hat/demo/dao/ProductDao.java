@@ -1,5 +1,6 @@
 package cart.hat.demo.dao;
 
+import java.io.File;
 import java.io.IOException;
 import java.sql.Blob;
 import java.util.ArrayList;

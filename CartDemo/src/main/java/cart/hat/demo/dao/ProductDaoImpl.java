@@ -47,14 +47,14 @@ public class ProductDaoImpl implements ProductDao {
 		return productList;
 	}
 
+	@Override
 	public int insertRecords(String name, Integer age, MultipartFile photo) throws IOException {
-		// TODO Auto-generated method stub		
 		JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
 		byte[] photoBytes = photo.getBytes();
 		String sql = "INSERT INTO STUDENT(NAME,AGE,PHOTO) VALUES (?,?,?)";
 		return jdbcTemplate.update(sql, new Object[] { name, age, photoBytes });
 	}
-	
+
 	@Override
 	public Blob getPhotoById(int id) {
 		JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
@@ -63,5 +63,4 @@ public class ProductDaoImpl implements ProductDao {
 		return photo;
 	}
 
-	
 }

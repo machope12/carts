@@ -1,22 +1,14 @@
 package cart.hat.demo.jdbc;
 
 import cart.hat.demo.bean.Product;
-
-import java.awt.Image;
-import java.awt.image.BufferedImage;
-import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
-import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-
-import javax.imageio.ImageIO;
-
+import java.util.Base64;
 import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.ResultSetExtractor;
-
 import com.mysql.cj.jdbc.Blob;
 
 public class ProductExtractor implements ResultSetExtractor<Product> {
@@ -24,44 +16,27 @@ public class ProductExtractor implements ResultSetExtractor<Product> {
 	}
 
 	public Product extractData(ResultSet resultSet) throws SQLException, DataAccessException {
-		
 		Product product = new Product();
 		product.setProductId(resultSet.getInt(1));
 		product.setProductName(resultSet.getString(2));
 		product.setProductAge(resultSet.getInt(3));
-			
-		Blob blob = (Blob) resultSet.getBlob(4);        
-	    InputStream is = blob.getBinaryStream();
-
-	      // Changing the order of the following two lines gives a difference in behavior:
-	      System.out.format("BLOB length: %d bytes\n", blob.length());
-	      try {
-			System.out.format("First byte of BLOB: %c\n", is.read());
-			 		
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-	      BufferedImage bImage;
+		Blob blob = (Blob) resultSet.getBlob(4);
+		InputStream inputStream = blob.getBinaryStream();
+		ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+		byte[] buffer = new byte[4096];
+		int bytesRead = -1;
 		try {
-			BufferedImage bImage;
-			bImage = ImageIO.read(new File("sample.jpg"));
-			ByteArrayOutputStream bos = new ByteArrayOutputStream();
-			ImageIO.write(bImage, "jpg", bos );
-			byte [] data = bos.toByteArray();
-			ByteArrayInputStream bis = new ByteArrayInputStream(data);
-		    BufferedImage bImage2 = ImageIO.read(bis);
-		    ImageIO.write(bImage2, "jpg", new File("output.jpg") );
-			
+			while ((bytesRead = inputStream.read(buffer)) != -1) {
+				outputStream.write(buffer, 0, bytesRead);
+			}
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-	      
-	     
-	      
-	      
-	      System.out.println("image created");	
+		byte[] imageBytes = outputStream.toByteArray();
+		String base64Image = Base64.getEncoder().encodeToString(imageBytes);
+		product.setProductBase64Image(base64Image);
+		System.out.println("image created");
 		return product;
 	}
 
