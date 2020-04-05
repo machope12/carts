@@ -73,7 +73,6 @@ public class HomeController {
 	public String upload(@RequestParam("name") String name, @RequestParam("age") Integer age,
 			@RequestParam("photo") MultipartFile photo) throws IOException {
 		productDao.insertRecords(name, age, photo);
-
 		return "home";
 	}
 

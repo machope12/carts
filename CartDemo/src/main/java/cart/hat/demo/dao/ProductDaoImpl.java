@@ -62,5 +62,13 @@ public class ProductDaoImpl implements ProductDao {
 		Blob photo = jdbcTemplate.queryForObject(query, new Object[] { id }, Blob.class);
 		return photo;
 	}
+	@Override
+	public Blob getPhotoByIds(int id) {
+		JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
+		String query = "select photo from student where id=?";
+		Blob photo = jdbcTemplate.queryForObject(query, new Object[] { id }, Blob.class);
+		return photo;
+	}
+
 
 }
