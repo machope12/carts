@@ -12,10 +12,12 @@
 		<table class="table table-striped table-hover">
 			<thead>
 				<tr class="bg-success">
+				
 					<td>Product Image</td>
 					<td>Product Id</td>
 					<td>Product Name</td>
-					<td>Product Category</td>
+					<td>Product Age</td>
+					<td>Product Image</td>
 				</tr>
 			</thead>
 			<c:forEach var="product" items="${productList}">
@@ -24,12 +26,11 @@
 					<c:url value="/viewProduct" var="myURL">
 						<c:param name="productId" value="${product.productId}" />
 					</c:url>
-					<td><img
-						src="data:image/jpg;base64,${product.productBase64Image}"
-						width="150" height="150" /></td>
+					<td					
 					<td>${product.productId}</td>
 					<td>${product.productName}</td>
 					<td>${product.productAge}</td>
+					
 					<td><a href="${myURL}"><i class="fa fa-car"></i></a></td>			
 			</tr>
 			</c:forEach>

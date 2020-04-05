@@ -40,7 +40,8 @@
 		class="cart.hat.demo.dao.ProductDaoImpl" />	
 	<beans:bean id="multipartResolver"
 		class="org.springframework.web.multipart.commons.CommonsMultipartResolver" />
-
+		
+		    
 	<context:component-scan
 		base-package="cart.hat.demo" />
 

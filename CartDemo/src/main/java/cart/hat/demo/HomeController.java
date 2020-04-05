@@ -22,7 +22,6 @@ import org.springframework.web.servlet.ModelAndView;
 import cart.hat.demo.bean.Product;
 import cart.hat.demo.dao.ProductDao;
 
-
 /**
  * Handles requests for the application home page.
  */
@@ -48,9 +47,9 @@ public class HomeController {
 	}
 
 	@RequestMapping({ "/insert" })
-	public ModelAndView addProduct(@ModelAttribute int product) {		
-			productDao.getProduct(product);
-		
+	public ModelAndView addProduct(@ModelAttribute int product) {
+		productDao.getProduct(product);
+
 		ModelAndView model = new ModelAndView("home");
 		return model;
 	}
@@ -72,13 +71,28 @@ public class HomeController {
 
 	@RequestMapping({ "/save" })
 	public String upload(@RequestParam("name") String name, @RequestParam("age") Integer age,
-			@RequestParam("photo") MultipartFile photo) throws IOException {		
-		productDao.insertRecords(name, age,  photo);
-		
-		return "home";		
-	}
-	
-	
-	}
-	
+			@RequestParam("photo") MultipartFile photo) throws IOException {
+		productDao.insertRecords(name, age, photo);
 
+		return "home";
+	}
+
+	@RequestMapping(value = "/savefile", method = RequestMethod.POST)
+	public ModelAndView upload(@RequestParam CommonsMultipartFile file, HttpSession session) {
+		String path = session.getServletContext().getRealPath("/");
+		String filename = file.getOriginalFilename();
+		System.out.println(path + " " + filename);
+		try {
+			byte barr[] = file.getBytes();
+			BufferedOutputStream bout = new BufferedOutputStream(new FileOutputStream(path + "/" + filename));
+			bout.write(barr);
+			bout.flush();
+			bout.close();
+
+		} catch (Exception e) {
+			System.out.println(e);
+		}
+		return new ModelAndView("upload-success", "filename", path + "/" + filename);
+	}
+
+}

@@ -16,5 +16,10 @@
 	<input type="submit" value="Submit">
 </pre>
 </form>
+
+    <form action="<c:url value = "/savefile"/>" method="post" enctype="multipart/form-data">  
+    Select File: <input type="file" name="file"/>  
+    <input type="submit" value="Upload File"/>  
+    </form>  
 </body>
 </html>
