@@ -50,7 +50,7 @@ public class HomeController {
 	public ModelAndView getProductList(Product product) {
 		System.out.println("controller1");
 		List<Product> productList = productDao.getProductList();
-		ModelAndView model = new ModelAndView("productList");
+		ModelAndView model = new ModelAndView("file");
 		model.addObject("productList", productList);
 		System.out.println("controller");
 		return model;
