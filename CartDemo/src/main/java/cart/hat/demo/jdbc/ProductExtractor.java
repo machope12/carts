@@ -20,23 +20,7 @@ public class ProductExtractor implements ResultSetExtractor<Product> {
 		product.setProductId(resultSet.getInt(1));
 		product.setProductName(resultSet.getString(2));
 		product.setProductAge(resultSet.getInt(3));
-		Blob blob = (Blob) resultSet.getBlob(4);
-		InputStream inputStream = blob.getBinaryStream();
-		ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
-		byte[] buffer = new byte[4096];
-		int bytesRead = -1;
-		try {
-			while ((bytesRead = inputStream.read(buffer)) != -1) {
-				outputStream.write(buffer, 0, bytesRead);
-			}
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		byte[] imageBytes = outputStream.toByteArray();
-		String base64Image = Base64.getEncoder().encodeToString(imageBytes);
-		product.setProductBase64Image(base64Image);
-		System.out.println("image created");
+		Blob blob = (Blob) resultSet.getBlob(4);		
 		return product;
 	}
 

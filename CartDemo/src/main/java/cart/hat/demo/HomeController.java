@@ -1,13 +1,18 @@
 package cart.hat.demo;
 
 import java.io.BufferedOutputStream;
+import java.io.ByteArrayInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
+
 import java.util.List;
 import java.util.Locale;
 
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.apache.commons.io.IOUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -19,6 +24,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.commons.CommonsMultipartFile;
 import org.springframework.web.servlet.ModelAndView;
+
+import java.sql.Blob;
+
 import cart.hat.demo.bean.Product;
 import cart.hat.demo.dao.ProductDao;
 
@@ -40,9 +48,11 @@ public class HomeController {
 
 	@RequestMapping({ "/productList" })
 	public ModelAndView getProductList(Product product) {
+		System.out.println("controller1");
 		List<Product> productList = productDao.getProductList();
 		ModelAndView model = new ModelAndView("productList");
 		model.addObject("productList", productList);
+		System.out.println("controller");
 		return model;
 	}
 
@@ -62,16 +72,16 @@ public class HomeController {
 
 	@RequestMapping({ "/viewProduct" })
 	public ModelAndView listNotes(@RequestParam("productId") int productId) {
-		;
 		List<Product> productList = productDao.getProduct(productId);
 		ModelAndView model = new ModelAndView("viewProduct");
 		model.addObject("productList", productList);
+
 		return model;
 	}
 
 	@RequestMapping({ "/save" })
 	public String upload(@RequestParam("name") String name, @RequestParam("age") Integer age,
-			@RequestParam("photo") MultipartFile photo) throws IOException {
+			@RequestParam("photo") CommonsMultipartFile photo) throws IOException {
 		productDao.insertRecords(name, age, photo);
 		return "home";
 	}
@@ -92,6 +102,17 @@ public class HomeController {
 			System.out.println(e);
 		}
 		return new ModelAndView("upload-success", "filename", path + "/" + filename);
+	}
+
+	@RequestMapping(value = "/getStudentPhoto/{id}")
+	public void getStudentPhoto(HttpServletResponse response, @PathVariable("id") int id) throws Exception {
+		response.setContentType("image/jpeg");
+		System.out.println("get image");
+		Blob ph = (Blob) productDao.getPhotoById(id);
+		System.out.println("get image2");
+		byte[] bytes = ph.getBytes(1, (int) ph.length());
+		InputStream inputStream = new ByteArrayInputStream(bytes);
+		IOUtils.copy(inputStream, response.getOutputStream());
 	}
 
 }

@@ -3,6 +3,7 @@ package cart.hat.demo.bean;
 import java.awt.Image;
 import java.sql.Blob;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.commons.CommonsMultipartFile;
 
 public class Product {
 
@@ -15,9 +16,9 @@ public class Product {
 	private int unitsInStock;
 	private String productManufactor;
 	private int productId;
-	private MultipartFile productPhoto;
+	private CommonsMultipartFile productPhoto;
 	private Integer productAge;
-	private Blob productPicture;
+	
 	private Image productImage;
 	private String productBase64Image;
 
@@ -93,13 +94,7 @@ public class Product {
 		this.productManufactor = productManufactor;
 	}
 
-	public MultipartFile getProductPhoto() {
-		return productPhoto;
-	}
-
-	public void setProductPhoto(MultipartFile productPhoto) {
-		this.productPhoto = productPhoto;
-	}
+	
 
 	public Integer getProductAge() {
 		return productAge;
@@ -107,15 +102,7 @@ public class Product {
 
 	public void setProductAge(Integer productAge) {
 		this.productAge = productAge;
-	}
-
-	public Blob getProductPicture() {
-		return productPicture;
-	}
-
-	public void setProductPicture(Blob productPicture) {
-		this.productPicture = productPicture;
-	}
+	}	
 
 	public Image getProductImage() {
 		return productImage;
@@ -136,6 +123,14 @@ public class Product {
 	public void setproductBase64ImageString(String base64Image) {
 		// TODO Auto-generated method stub
 		
+	}
+
+	public CommonsMultipartFile getProductPhoto() {
+		return productPhoto;
+	}
+
+	public void setProductPhoto(CommonsMultipartFile productPhoto) {
+		this.productPhoto = productPhoto;
 	}
 
 }
