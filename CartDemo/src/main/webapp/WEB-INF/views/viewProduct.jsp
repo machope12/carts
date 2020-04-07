@@ -11,7 +11,7 @@
 		<c:forEach var="product" items="${productList}">
 			<div class="row">
 				<div class="col-md-5">
-					<img width="350" height="350" src="getStudentPhoto/<c:out value='${product.productId}'/>">			
+					<img width="200" height="200" src="getStudentPhoto/<c:out value='${product.productId}'/>">			
 				</div>
 				<div class="col-md-5">
 					<h3>${product.productName}</h3>

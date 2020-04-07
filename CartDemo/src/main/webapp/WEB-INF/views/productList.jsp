@@ -26,7 +26,7 @@
 					<c:url value="/viewProduct" var="myURL">
 						<c:param name="productId" value="${product.productId}" />
 					</c:url>
-					<td><img width="200" height="200" src="getStudentPhoto/<c:out value='${product.productId}'/>"></td>				
+					<td><img width="75" height="75" src="getStudentPhoto/<c:out value='${product.productId}'/>"></td>				
 					<td>${product.productId}</td>
 					<td>${product.productName}</td>
 					<td>${product.productAge}</td>
