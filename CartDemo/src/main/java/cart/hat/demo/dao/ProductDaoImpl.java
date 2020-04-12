@@ -30,8 +30,7 @@ public class ProductDaoImpl implements ProductDao {
 	DataSource dataSource;
 
 	@Override
-	public List<Product> getProductList() {
-		System.out.println("controlle2r");
+	public List<Product> getProductList() {		
 		List<Product> productList = new ArrayList();
 		String sql = "select * from student";
 		JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);

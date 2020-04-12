@@ -18,7 +18,7 @@ public class Product {
 	private int productId;
 	private CommonsMultipartFile productPhoto;
 	private Integer productAge;
-	
+
 	private Image productImage;
 	private String productBase64Image;
 
@@ -94,15 +94,13 @@ public class Product {
 		this.productManufactor = productManufactor;
 	}
 
-	
-
 	public Integer getProductAge() {
 		return productAge;
 	}
 
 	public void setProductAge(Integer productAge) {
 		this.productAge = productAge;
-	}	
+	}
 
 	public Image getProductImage() {
 		return productImage;
@@ -114,15 +112,6 @@ public class Product {
 
 	public String getProductBase64Image() {
 		return productBase64Image;
-	}
-
-	public void setProductBase64Image(String productBase64Image) {
-		this.productBase64Image = productBase64Image;
-	}
-
-	public void setproductBase64ImageString(String base64Image) {
-		// TODO Auto-generated method stub
-		
 	}
 
 	public CommonsMultipartFile getProductPhoto() {

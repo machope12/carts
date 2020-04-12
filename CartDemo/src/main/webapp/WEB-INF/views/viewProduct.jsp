@@ -10,10 +10,10 @@
 	<div class="container">
 		<c:forEach var="product" items="${productList}">
 			<div class="row">
-				<div class="col-md-5">
-					<img width="200" height="200" src="getStudentPhoto/<c:out value='${product.productId}'/>">			
+				<div class="col-md-6">
+					<img width="400" height="400" src="getStudentPhoto/<c:out value='${product.productId}'/>">			
 				</div>
-				<div class="col-md-5">
+				<div class="col-md-6">
 					<h3>${product.productName}</h3>
 					<h3>${product.productAge}</h3>
 				</div>
