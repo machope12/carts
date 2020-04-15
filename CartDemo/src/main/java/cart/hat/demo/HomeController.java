@@ -21,9 +21,10 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.commons.CommonsMultipartFile;
 import org.springframework.web.servlet.ModelAndView;
+
+
 
 import java.sql.Blob;
 
@@ -48,11 +49,11 @@ public class HomeController {
 
 	@RequestMapping({ "/productList" })
 	public ModelAndView getProductList(Product product) {
-		
+
 		List<Product> productList = productDao.getProductList();
 		ModelAndView model = new ModelAndView("file");
 		model.addObject("productList", productList);
-		
+
 		return model;
 	}
 
@@ -70,6 +71,13 @@ public class HomeController {
 		return model;
 	}
 
+	@RequestMapping({ "/cart" })
+	public ModelAndView getCart(@RequestParam("productId") int productId) {
+		List<Product> productList = productDao.getProduct(productId);
+		ModelAndView model = new ModelAndView("cart");		
+		model.addObject("productList", productList);
+		return model;
+	}
 	@RequestMapping({ "/viewProduct" })
 	public ModelAndView listNotes(@RequestParam("productId") int productId) {
 		List<Product> productList = productDao.getProduct(productId);
@@ -80,9 +88,8 @@ public class HomeController {
 	}
 
 	@RequestMapping({ "/save" })
-	public String upload(@RequestParam("name") String name, @RequestParam("age") Integer age,
-			@RequestParam("photo") CommonsMultipartFile photo) throws IOException {
-		productDao.insertRecords(name, age, photo);
+	public String upload(@RequestParam("name") String name,	@RequestParam("photo") CommonsMultipartFile photo,@RequestParam("age") Integer age ) throws IOException {
+		productDao.insertRecords(name,photo, age);
 		return "home";
 	}
 
@@ -107,9 +114,7 @@ public class HomeController {
 	@RequestMapping(value = "/getStudentPhoto/{id}")
 	public void getStudentPhoto(HttpServletResponse response, @PathVariable("id") int id) throws Exception {
 		response.setContentType("image/jpeg");
-		System.out.println("get image");
 		Blob ph = (Blob) productDao.getPhotoById(id);
-		System.out.println("get image2");
 		byte[] bytes = ph.getBytes(1, (int) ph.length());
 		InputStream inputStream = new ByteArrayInputStream(bytes);
 		IOUtils.copy(inputStream, response.getOutputStream());

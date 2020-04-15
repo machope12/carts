@@ -10,7 +10,7 @@ public class Product {
 	private String productName;
 	private String productCategory;
 	private String productDescription;
-	private double productPrice;
+	private float productPrice;
 	private String productCondition;
 	private String productStatus;
 	private int unitsInStock;
@@ -54,13 +54,7 @@ public class Product {
 		this.productDescription = productDescription;
 	}
 
-	public double getProductPrice() {
-		return productPrice;
-	}
-
-	public void setProductPrice(double productPrice) {
-		this.productPrice = productPrice;
-	}
+	
 
 	public String getProductCondition() {
 		return productCondition;
@@ -120,6 +114,14 @@ public class Product {
 
 	public void setProductPhoto(CommonsMultipartFile productPhoto) {
 		this.productPhoto = productPhoto;
+	}
+
+	public float getProductPrice() {
+		return productPrice;
+	}
+
+	public void setProductPrice(float productPrice) {
+		this.productPrice = productPrice;
 	}
 
 }

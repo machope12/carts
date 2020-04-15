@@ -18,7 +18,7 @@
 </pre>
 		</form>
 
-		<form action="/action_page.php">
+		<form action="<c:url value = "/save"/>" method="post" enctype="multipart/form-data">
 			<div class="form-group">
 				<label for="email">Email address:</label> <input type="email"
 					class="form-control" placeholder="Enter email" id="email">

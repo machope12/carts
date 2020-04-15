@@ -19,7 +19,6 @@ import org.springframework.jdbc.support.lob.LobHandler;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.commons.CommonsMultipartFile;
 
-
 import cart.hat.demo.bean.Product;
 import cart.hat.demo.dao.ProductDao;
 import cart.hat.demo.jdbc.ProductMapper;
@@ -30,7 +29,7 @@ public class ProductDaoImpl implements ProductDao {
 	DataSource dataSource;
 
 	@Override
-	public List<Product> getProductList() {		
+	public List<Product> getProductList() {
 		List<Product> productList = new ArrayList();
 		String sql = "select * from student";
 		JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
@@ -49,21 +48,21 @@ public class ProductDaoImpl implements ProductDao {
 	}
 
 	@Override
-	public int insertRecords(String name, Integer age, CommonsMultipartFile photo) throws IOException {
+	public int insertRecords(String name, CommonsMultipartFile photo, Integer age) throws IOException {
 		JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
 		byte[] photoBytes = photo.getBytes();
-		String sql = "INSERT INTO STUDENT(NAME,AGE,PHOTO) VALUES (?,?,?)";
-		return jdbcTemplate.update(sql, new Object[] { name, age, photoBytes });
+		String sql = "INSERT INTO STUDENT(NAME,PHOTO,AGE) VALUES (?,?,?)";
+		return jdbcTemplate.update(sql, new Object[] { name, photoBytes, age });
 	}
 
 	@Override
 	public Blob getPhotoById(int id) {
 		JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
-		String query = "select photo from student where id=?";
-		System.out.println("get image3");
+		String query = "select photo from student where id=?";		
 		Blob photo = jdbcTemplate.queryForObject(query, new Object[] { id }, Blob.class);
 		return photo;
 	}
+
 	@Override
 	public Blob getPhotoByIds(int id) {
 		JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
@@ -72,5 +71,21 @@ public class ProductDaoImpl implements ProductDao {
 		return photo;
 	}
 
+	@Override
+	public int getOrderId() {
+		// TODO Auto-generated method stub
+		// define the range
+		int rand = 0;		
+		int max = 10;
+		int min = 1;
+		int range = max - min + 1;
+
+		// generate random numbers within 1 to 10
+		for (int i = 0; i < 10; i++) {
+			rand = (int) (Math.random() * range) + min;
+		}
+
+		return rand;
+	}
 
 }

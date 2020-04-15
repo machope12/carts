@@ -9,7 +9,7 @@ import java.sql.SQLException;
 import java.util.Base64;
 import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.ResultSetExtractor;
-import com.mysql.cj.jdbc.Blob;
+import java.sql.Blob;
 
 public class ProductExtractor implements ResultSetExtractor<Product> {
 	public ProductExtractor() {
@@ -18,9 +18,9 @@ public class ProductExtractor implements ResultSetExtractor<Product> {
 	public Product extractData(ResultSet resultSet) throws SQLException, DataAccessException {
 		Product product = new Product();
 		product.setProductId(resultSet.getInt(1));
-		product.setProductName(resultSet.getString(2));
-		product.setProductAge(resultSet.getInt(3));
-		Blob blob = (Blob) resultSet.getBlob(4);		
+		product.setProductName(resultSet.getString(2));		
+		Blob blob = (Blob) resultSet.getBlob(3);
+		product.setProductAge(resultSet.getInt(4));
 		return product;
 	}
 

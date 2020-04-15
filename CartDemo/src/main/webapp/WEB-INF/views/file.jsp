@@ -21,7 +21,8 @@
 							style="max-width: 15rem; margin-left: 40px;">
 
 							<div class="card-header">
-							<a href="${myURL}">	<img width="200" height="200"src="getStudentPhoto/<c:out value='${product.productId}'/>"></a>
+								<a href="${myURL}"> <img width="200" height="200"
+									src="getStudentPhoto/<c:out value='${product.productId}'/>"></a>
 							</div>
 							<div class="card-body text-primary">
 								<h5 class="card-title">Primary card title</h5>

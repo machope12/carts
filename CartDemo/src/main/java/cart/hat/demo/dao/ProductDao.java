@@ -15,8 +15,9 @@ import cart.hat.demo.bean.Product;
 public abstract interface ProductDao {		
 	public abstract List<Product> getProductList();	
 	public abstract List<Product> getProduct(int i);
-	public abstract int insertRecords(String name, Integer age, CommonsMultipartFile photo) throws IOException;
+	public abstract int insertRecords(String name, CommonsMultipartFile photo, Integer age) throws IOException;
 	public abstract Blob getPhotoById(int id);
-	public abstract Blob getPhotoByIds(int id);		
+	public abstract Blob getPhotoByIds(int id);	
+	public abstract int getOrderId();
 	
 }
