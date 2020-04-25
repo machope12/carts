@@ -52,6 +52,7 @@
 				
 					<li class="nav-item"><a class="nav-link" href = "<c:url value = "/productForm"/>">Product Form </a></li>
 					<li class="nav-item"><a class="nav-link" href = "<c:url value = "/cart"/>">Cart </a></li>
+					<li class="nav-item"><a class="nav-link" href = "<c:url value = "/adminList"/>">Admin </a></li>
 				</ul>
 			</div>
 		</div>

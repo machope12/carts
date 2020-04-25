@@ -22,21 +22,28 @@
 			</thead>
 			<c:forEach var="product" items="${productList}">
 				<tr>
-
-					<c:url value="/viewProduct" var="myURL">
+					<c:url value="/delete" var="myURL">
 						<c:param name="productId" value="${product.productId}" />
 					</c:url>
+					
+					<c:url value="/editForm" var="myURL1">
+						<c:param name="productId" value="${product.productId}" />
+					</c:url>
+					
 					<td><img width="75" height="75" src="getStudentPhoto/<c:out value='${product.productId}'/>"></td>				
 					<td>${product.productId}</td>
 					<td>${product.productName}</td>
 					<td>${product.productAge}</td>
 					
-					<td><a href="${myURL}"><i class="fa fa-car"></i></a></td>
-					<td><a href="${myURL}"><i class="icon-remove"></i></a></td>		
+					<td><a href="${myURL}"><i class="fa fa-times"></i></a>
+					<a href="${myURL1}"><i class="fa fa-pencil"></i></a>
+					
+					</td>	
 			</tr>
 			</c:forEach>
+			
 		</table>
-
+		<a class="btn btn-primary" role="button" href="<c:url value = "/productForm"/>">Add Product</a>
 	</div>
 </div>
 

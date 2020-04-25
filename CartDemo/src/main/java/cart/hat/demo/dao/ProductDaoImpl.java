@@ -2,6 +2,7 @@ package cart.hat.demo.dao;
 
 import java.io.File;
 import java.sql.Blob;
+import java.sql.SQLException;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -48,17 +49,18 @@ public class ProductDaoImpl implements ProductDao {
 	}
 
 	@Override
-	public int insertRecords(String name, CommonsMultipartFile photo, Integer age) throws IOException {
+	public String insertRecords(String name, CommonsMultipartFile photo, Integer age) throws IOException {
 		JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
 		byte[] photoBytes = photo.getBytes();
 		String sql = "INSERT INTO STUDENT(NAME,PHOTO,AGE) VALUES (?,?,?)";
-		return jdbcTemplate.update(sql, new Object[] { name, photoBytes, age });
+		jdbcTemplate.update(sql, new Object[] { name, photoBytes, age });
+		return "admin";
 	}
 
 	@Override
 	public Blob getPhotoById(int id) {
 		JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
-		String query = "select photo from student where id=?";		
+		String query = "select photo from student where id=?";
 		Blob photo = jdbcTemplate.queryForObject(query, new Object[] { id }, Blob.class);
 		return photo;
 	}
@@ -72,20 +74,39 @@ public class ProductDaoImpl implements ProductDao {
 	}
 
 	@Override
-	public int getOrderId() {
-		// TODO Auto-generated method stub
-		// define the range
-		int rand = 0;		
-		int max = 10;
-		int min = 1;
-		int range = max - min + 1;
+	public int delete(int i) {
+		String sql = "DELETE FROM student WHERE id=" + i;
+		JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
+		return jdbcTemplate.update(sql);
+	}
 
-		// generate random numbers within 1 to 10
-		for (int i = 0; i < 10; i++) {
-			rand = (int) (Math.random() * range) + min;
+	@Override
+	public String updateRecords(String name, CommonsMultipartFile photo, Integer age, int id) {
+		// Creates an instance of JdbcTemplate and set the DataSource.
+		// We can use the template update() method to update records
+		// in the database. Below we use an update() method that accepts
+		// three parameters: the sql query, the parameter values and
+		// the parameter data types.
+
+		byte[] photobytes = null;
+		List<Product> productList = getProduct(id);
+		if (photo.isEmpty()) {
+			try {
+				for (int i = 0; i < productList.size(); i++) {
+					photobytes = productList.get(0).getBlob().getBytes(1, (int) productList.get(0).getBlob().length());
+				}
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		} else {
+			photobytes = photo.getBytes();
 		}
 
-		return rand;
+		JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
+		String sql = "UPDATE student SET name = ?, photo = ?, age = ? WHERE id = ?";
+		jdbcTemplate.update(sql, new Object[] { name, photobytes, age, id });
+		return "admin";
 	}
 
 }

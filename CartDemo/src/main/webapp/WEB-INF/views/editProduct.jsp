@@ -7,15 +7,25 @@
 <body>
 	<h2>How to insert image in database using Spring MVC</h2>
 	<div class="container">
-		<form action="<c:url value = "/save"/>" method="post" enctype="multipart/form-data">				
-			Name	<input type="text" name="name">				
-			Age: <input type="number" name="age">				
-			Photo: <input type="file" name="photo">				
-			<input type="submit" value="Submit">		
-			
+			<c:forEach var="product" items="${productList}">
+		
+			</c:forEach>
+		<form action="<c:url value = "/editProduct"/>" method="post"
+			enctype="multipart/form-data">
+
+			<pre>
+			<c:forEach var="product" items="${productList}">
+			Name: <input type="text" name="name" value="${product.productName}">				
+			Age: <input type="number" name="age" value="${product.productAge}">				
+			Photo: <input type="file" name="photo">	
+			<input type="hidden" name="id" value="${product.productId}">					
+			<input type="submit" value="Submit">			
+			</c:forEach>
+			</pre>
+
 		</form>
 
-		<form action="<c:url value = "/save"/>" method="post"
+		<form action="<c:url value = "/editProduct"/>" method="post"
 			enctype="multipart/form-data">
 			<div class="form-group">
 				<label for="email">Email address:</label> <input type="email"

@@ -2,23 +2,33 @@ package cart.hat.demo.bean;
 
 import java.awt.Image;
 import java.sql.Blob;
-import org.springframework.web.multipart.MultipartFile;
+
+import javax.validation.constraints.Min;
+
+import org.hibernate.validator.constraints.NotEmpty;
 import org.springframework.web.multipart.commons.CommonsMultipartFile;
 
 public class Product {
-
+	@NotEmpty(message= "The product name cannot be null")
 	private String productName;
 	private String productCategory;
 	private String productDescription;
+	@Min(value =0, message="The product price must not be less than 0" )
 	private float productPrice;
 	private String productCondition;
 	private String productStatus;
+	@Min(value =0, message="The units in stock must not be less than 0" )
 	private int unitsInStock;
 	private String productManufactor;
 	private int productId;
 	private CommonsMultipartFile productPhoto;
+	@Min(value =0, message="The age must not be less than 0" )
 	private Integer productAge;
-
+	private Blob blob;
+	@Min(value =0, message="The age must not be less than 0" )
+	private int age;
+	@NotEmpty(message= "The product name cannot be null")
+	private String name;
 	private Image productImage;
 	private String productBase64Image;
 
@@ -53,8 +63,6 @@ public class Product {
 	public void setProductDescription(String productDescription) {
 		this.productDescription = productDescription;
 	}
-
-	
 
 	public String getProductCondition() {
 		return productCondition;
@@ -122,6 +130,30 @@ public class Product {
 
 	public void setProductPrice(float productPrice) {
 		this.productPrice = productPrice;
+	}
+
+	public Blob getBlob() {
+		return blob;
+	}
+
+	public void setBlob(Blob blob) {
+		this.blob = blob;
+	}
+
+	public int getAge() {
+		return age;
+	}
+
+	public void setAge(int age) {
+		this.age = age;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
 	}
 
 }

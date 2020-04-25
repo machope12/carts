@@ -19,7 +19,7 @@ public class ProductExtractor implements ResultSetExtractor<Product> {
 		Product product = new Product();
 		product.setProductId(resultSet.getInt(1));
 		product.setProductName(resultSet.getString(2));		
-		Blob blob = (Blob) resultSet.getBlob(3);
+		product.setBlob((Blob) resultSet.getBlob(3));		
 		product.setProductAge(resultSet.getInt(4));
 		return product;
 	}

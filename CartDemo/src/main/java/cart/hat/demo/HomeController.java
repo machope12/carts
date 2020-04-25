@@ -24,9 +24,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.commons.CommonsMultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
-
-
 import java.sql.Blob;
+import java.sql.SQLException;
 
 import cart.hat.demo.bean.Product;
 import cart.hat.demo.dao.ProductDao;
@@ -57,6 +56,15 @@ public class HomeController {
 		return model;
 	}
 
+	@RequestMapping({ "/adminList" })
+	public ModelAndView getAdminList(Product product) {
+
+		List<Product> productList = productDao.getProductList();
+		ModelAndView model = new ModelAndView("admin");
+		model.addObject("productList", productList);
+		return model;
+	}
+
 	@RequestMapping({ "/insert" })
 	public ModelAndView addProduct(@ModelAttribute int product) {
 		productDao.getProduct(product);
@@ -74,41 +82,24 @@ public class HomeController {
 	@RequestMapping({ "/cart" })
 	public ModelAndView getCart(@RequestParam("productId") int productId) {
 		List<Product> productList = productDao.getProduct(productId);
-		ModelAndView model = new ModelAndView("cart");		
+		ModelAndView model = new ModelAndView("cart");
 		model.addObject("productList", productList);
 		return model;
 	}
+
 	@RequestMapping({ "/viewProduct" })
 	public ModelAndView listNotes(@RequestParam("productId") int productId) {
 		List<Product> productList = productDao.getProduct(productId);
 		ModelAndView model = new ModelAndView("viewProduct");
 		model.addObject("productList", productList);
-
 		return model;
 	}
 
 	@RequestMapping({ "/save" })
-	public String upload(@RequestParam("name") String name,	@RequestParam("photo") CommonsMultipartFile photo,@RequestParam("age") Integer age ) throws IOException {
-		productDao.insertRecords(name,photo, age);
-		return "home";
-	}
-
-	@RequestMapping(value = "/savefile", method = RequestMethod.POST)
-	public ModelAndView upload(@RequestParam CommonsMultipartFile file, HttpSession session) {
-		String path = session.getServletContext().getRealPath("/");
-		String filename = file.getOriginalFilename();
-		System.out.println(path + " " + filename);
-		try {
-			byte barr[] = file.getBytes();
-			BufferedOutputStream bout = new BufferedOutputStream(new FileOutputStream(path + "/" + filename));
-			bout.write(barr);
-			bout.flush();
-			bout.close();
-
-		} catch (Exception e) {
-			System.out.println(e);
-		}
-		return new ModelAndView("upload-success", "filename", path + "/" + filename);
+	public String upload(@RequestParam("name") String name, @RequestParam("photo") CommonsMultipartFile photo,
+			@RequestParam("age") Integer age) throws IOException {
+		productDao.insertRecords(name, photo, age);
+		return "redirect:/adminList";
 	}
 
 	@RequestMapping(value = "/getStudentPhoto/{id}")
@@ -120,4 +111,24 @@ public class HomeController {
 		IOUtils.copy(inputStream, response.getOutputStream());
 	}
 
+	@RequestMapping({ "/editProduct" })
+	public String editTransfer(@RequestParam("name") String name, @RequestParam("photo") CommonsMultipartFile photo,
+			@RequestParam("age") Integer age, @RequestParam("id") int id) throws IOException, SQLException {
+		productDao.updateRecords(name, photo, age, id);
+		return "redirect:/adminList";
+	}
+
+	@RequestMapping({ "/delete" })
+	public String delete(@RequestParam("productId") int productId) {
+		productDao.delete(productId);
+		return "redirect:/adminList";
+	}
+
+	@RequestMapping({ "/editForm" })
+	public ModelAndView editForm(@RequestParam("productId") int productId) {
+		List<Product> productList = productDao.getProduct(productId);
+		ModelAndView model = new ModelAndView("editProduct");
+		model.addObject("productList", productList);
+		return model;
+	}
 }
