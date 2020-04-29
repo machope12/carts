@@ -13,7 +13,7 @@ public class Product {
 	private String productName;
 	private String productCategory;
 	private String productDescription;
-	@Min(value =0, message="The product price must not be less than 0" )
+	@Min(value=0, message="The price of stock must not be less than 0" )
 	private float productPrice;
 	private String productCondition;
 	private String productStatus;
@@ -22,12 +22,12 @@ public class Product {
 	private String productManufactor;
 	private int productId;
 	private CommonsMultipartFile productPhoto;
-	@Min(value =0, message="The age must not be less than 0" )
+	
 	private Integer productAge;
 	private Blob blob;
-	@Min(value =0, message="The age must not be less than 0" )
+	
 	private int age;
-	@NotEmpty(message= "The product name cannot be null")
+	
 	private String name;
 	private Image productImage;
 	private String productBase64Image;

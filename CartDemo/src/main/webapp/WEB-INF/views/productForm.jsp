@@ -5,33 +5,23 @@
 
 <html>
 <body>
-	<h2>How to insert image in database using Spring MVC</h2>
-	<div class="container">
-		<form action="<c:url value = "/save"/>" method="post" enctype="multipart/form-data">				
-			Name	<input type="text" name="name">				
-			Age: <input type="number" name="age">				
-			Photo: <input type="file" name="photo">				
-			<input type="submit" value="Submit">		
-			
-		</form>
 
-		<form action="<c:url value = "/save"/>" method="post"
-			enctype="multipart/form-data">
-			<div class="form-group">
-				<label for="email">Email address:</label> <input type="email"
-					class="form-control" placeholder="Enter email" id="email">
-			</div>
-			<div class="form-group">
-				<label for="pwd">Password:</label> <input type="password"
-					class="form-control" placeholder="Enter password" id="pwd">
-			</div>
-			<div class="form-group form-check">
-				<label class="form-check-label"> <input
-					class="form-check-input" type="checkbox"> Remember me
-				</label>
-			</div>
-			<button type="submit" class="btn btn-primary">Submit</button>
-		</form>
+	<div class="container">
+		<div>
+			<form:form modelAttribute="productForm"
+				action="${pageContext.request.contextPath}/save" method="post">				
+					Product Name: <form:input type="text" path="productName" />
+				<form:errors path="productName" cssClass="error" />
+				<br>
+				<br>  
+					Product Price: <form:input type="number" path="productPrice" />
+				<form:errors path="productPrice" cssClass="error" />
+				<br>
+				<br>
+				<input type="submit" value="submit">
+			</form:form>
+
+		</div>
 	</div>
 </body>
 </html>

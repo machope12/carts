@@ -11,11 +11,12 @@ import java.util.Locale;
 
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-
+import javax.validation.Valid;
 import org.apache.commons.io.IOUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -43,6 +44,7 @@ public class HomeController {
 	 */
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String home(Locale locale, Model model) {
+
 		return "home";
 	}
 
@@ -75,7 +77,9 @@ public class HomeController {
 
 	@RequestMapping({ "/productForm" })
 	public ModelAndView getProductForm(@ModelAttribute Product product) {
+		System.out.println(product.getProductName());
 		ModelAndView model = new ModelAndView("productForm");
+		model.addObject("productForm", new Product());
 		return model;
 	}
 
@@ -96,9 +100,14 @@ public class HomeController {
 	}
 
 	@RequestMapping({ "/save" })
-	public String upload(@RequestParam("name") String name, @RequestParam("photo") CommonsMultipartFile photo,
-			@RequestParam("age") Integer age) throws IOException {
-		productDao.insertRecords(name, photo, age);
+	public String upload(@ModelAttribute("productForm") @Valid Product product, BindingResult result) throws IOException {
+
+		if (result.hasErrors()) {
+
+			return "productForm";
+		}
+
+		// productDao.insertRecords(name, photo, age);
 		return "redirect:/adminList";
 	}
 
